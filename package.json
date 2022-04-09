@@ -2,8 +2,11 @@
   "name": "meta-commerce-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "license": "MIT",
+  "scripts": {
+    "start":"node ./src/index.js",
+    "dev":"nodemon ./src/index.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
