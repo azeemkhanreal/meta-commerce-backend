@@ -2,7 +2,6 @@ const router = require("express").Router();
 const { protect } = require("../../util/auth");
 const userController = require("./user.controller");
 
-console.log(userController);
 // api endpoint - http://localhost/api/users/
 router.route("/").get(protect, userController.getAll); // query -> new = true, limit=5
 // api endpoint - http://localhost/api/users/stats
