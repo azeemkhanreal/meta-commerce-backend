@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const morgan = require("morgan");
 const connect = require("./util/db");
+const userRouter = require("./resources/user/user.router");
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -12,6 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.disable("x-powered-by");
+
+// api router
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   res.end("Hello World!");
