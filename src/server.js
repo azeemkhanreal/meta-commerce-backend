@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const connect = require("./util/db");
 const userRouter = require("./resources/user/user.router");
+const { register, login } = require("./util/auth");
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -15,6 +16,8 @@ app.use(morgan("dev"));
 app.disable("x-powered-by");
 
 // api router
+app.use("/register", register);
+app.use("/login", login);
 app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
