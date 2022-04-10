@@ -69,11 +69,15 @@ const protect = async (req, res, next) => {
   } catch (err) {
     return res.status(401).end("Invalid Token");
   }
-  const user = await User.findById(payload.id);
-  if (!user) res.status(401).end();
-  req.user = user;
-  next();
+  try {
+    const user = await User.findById(payload.id);
+    req.user = user;
+    next();
+  } catch (err) {
+    return res.status(401).end("token regenerate");
+  }
 };
+
 module.exports = {
   register,
   login,
