@@ -1,6 +1,7 @@
 const crudControllers = require("../../util/crud");
 const User = require("./user.model");
 
+// get number of users in database monthly wise
 const getStats = (User) => async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
