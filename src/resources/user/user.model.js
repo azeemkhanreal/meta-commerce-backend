@@ -31,6 +31,17 @@ userSchema.pre("save", function (next) {
     next();
   });
 });
+userSchema.pre("findOneAndUpdate", async function (next) {
+  try {
+    if (this._update.password) {
+      const hashed = await bcrypt.hash(this._update.password, 8);
+      this._update.password = hashed;
+    }
+    next();
+  } catch (err) {
+    return next(err);
+  }
+});
 
 // through checkPassword method, you can match password with encrypted password
 userSchema.methods.checkPassword = function (password) {
