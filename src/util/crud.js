@@ -53,7 +53,6 @@ const crudControllers = (model) => ({
   updateOne: updateOne(model),
   removeOne: removeOne(model),
   getAll: getAll(model),
-  getStats: getStats(model),
 });
 
 module.exports = crudControllers;
