@@ -20,7 +20,7 @@ const createOne = (model) => async (req, res) => {
 const getAll = (model) => async (req, res) => {
   const queries = req.query; // query -> new=true, limit=5
   try {
-    const doc = queries.new
+    const docs = queries.new
       ? await model.find().limit(queries.limit).sort({ _id: -1 })
       : await model.find().limit(queries.limit);
     res.status(200).json({ data: docs });
