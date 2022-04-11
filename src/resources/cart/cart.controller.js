@@ -10,4 +10,4 @@ const getOne = async (req, res) => {
   }
 };
 
-module.exports = crudControllers(Cart);
+module.exports = { ...crudControllers(Cart), getOne: getOne };
