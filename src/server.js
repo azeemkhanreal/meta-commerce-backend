@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const connect = require("./util/db");
 const userRouter = require("./resources/user/user.router");
 const productRouter = require("./resources/product/product.router");
+const cartRouter = require("./resources/cart/cart.router");
 const { register, login } = require("./util/auth");
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use("/register", register);
 app.use("/login", login);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/cart", cartRouter);
 
 app.get("/", (req, res) => {
   res.end("Hello World!");

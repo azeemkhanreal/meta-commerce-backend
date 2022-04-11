@@ -1,4 +1,3 @@
-const e = require("express");
 const crudControllers = require("../../util/crud");
 const Product = require("./product.model");
 
