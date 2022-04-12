@@ -38,17 +38,18 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email && !password)
+  if (!req.body.email && !req.body.password)
     return res.status(400).end("need email and password");
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: req.body.email });
     if (!user)
       return res.status(401).send("Invalid email ans password combination");
-    const match = await user.checkPassword(password);
+    const match = await user.checkPassword(req.body.password);
     if (!match) return res.status(401).send("Invalid password");
     const token = newToken(user);
-    res.status(200).json({ token });
+    const { password, isAdmin, ...others } = user._doc;
+    console.log(others);
+    res.status(200).json({ ...others, token });
   } catch (err) {
     res.status(500).json({ err: err.message });
   }

@@ -19,8 +19,8 @@ app.use(morgan("dev"));
 app.disable("x-powered-by");
 
 // api router
-app.use("/register", register);
-app.use("/login", login);
+app.use("/api/auth/register", register);
+app.use("/api/auth/login", login);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
