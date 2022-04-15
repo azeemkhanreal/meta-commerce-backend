@@ -31,7 +31,9 @@ const register = async (req, res) => {
   try {
     const newUser = await User.create(req.body);
     const token = await newToken(newUser);
-    res.status(201).json({ newUser, token });
+    const { password, isAdmin, ...others } = newUser._doc;
+    console.log(others);
+    res.status(201).json({ ...others, token });
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
@@ -48,7 +50,6 @@ const login = async (req, res) => {
     if (!match) return res.status(401).send("Invalid password");
     const token = newToken(user);
     const { password, isAdmin, ...others } = user._doc;
-    console.log(others);
     res.status(200).json({ ...others, token });
   } catch (err) {
     res.status(500).json({ err: err.message });
