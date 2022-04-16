@@ -7,6 +7,7 @@ const userRouter = require("./resources/user/user.router");
 const productRouter = require("./resources/product/product.router");
 const cartRouter = require("./resources/cart/cart.router");
 const orderRouter = require("./resources/order/order.route");
+const categoryRouter = require("./resources/category/category.router");
 const { register, login } = require("./util/auth");
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/categories", categoryRouter);
 
 app.get("/", (req, res) => {
   res.end("Hello World!");

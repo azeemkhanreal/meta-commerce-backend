@@ -23,7 +23,7 @@ const getAll = (model) => async (req, res) => {
     const docs = queries.new
       ? await model.find().limit(queries.limit).sort({ _id: -1 })
       : await model.find().limit(queries.limit);
-    res.status(200).json({ data: docs });
+    res.status(200).json(docs);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
