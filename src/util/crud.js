@@ -31,21 +31,13 @@ const getAll = (model) => async (req, res) => {
 
 const updateOne = (model) => async (req, res) => {
   // check user is admin, if true then accepted to update other not allow to do that
-  if (req.user.isAdmin) {
-    try {
-      const updatedDoc = await model.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {
-          new: true,
-        }
-      );
-      res.status(200).json({ data: updatedDoc });
-    } catch (err) {
-      res.status(500).json({ err: err.message });
-    }
-  } else {
-    res.status(400).end("You are not allow to do that");
+  try {
+    const updatedDoc = await model.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json({ data: updatedDoc });
+  } catch (err) {
+    res.status(500).json({ err: err.message });
   }
 };
 const removeOne = (model) => async (req, res) => {
