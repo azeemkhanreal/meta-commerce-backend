@@ -1,5 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv");
+const config = require("./util/config");
 const cors = require("cors");
 const morgan = require("morgan");
 const connect = require("./util/db");
@@ -11,7 +11,6 @@ const categoryRouter = require("./resources/category/category.router");
 const { register, login } = require("./util/auth");
 
 dotenv.config();
-const PORT = process.env.PORT;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -34,7 +33,7 @@ app.get("/", (req, res) => {
 
 const start = async () => {
   await connect();
-  app.listen(PORT, () => {
+  app.listen(config.PORT, () => {
     console.log(`server is listening on http://localhost:${PORT}`);
   });
 };

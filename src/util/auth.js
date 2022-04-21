@@ -1,5 +1,6 @@
 const User = require("../resources/user/user.model");
 const jwt = require("jsonwebtoken");
+const config = require("./config");
 
 const newToken = (user) => {
   return jwt.sign(
@@ -7,7 +8,7 @@ const newToken = (user) => {
       id: user._id,
       isAdmin: user.isAdmin,
     },
-    process.env.SECRET_KEY,
+    config.SECRET_KEY,
     {
       expiresIn: "3d",
     }
@@ -16,7 +17,7 @@ const newToken = (user) => {
 
 const verifyToken = (token) => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.SECRET_KEY, (err, payload) => {
+    jwt.verify(token, config.SECRET_KEY, (err, payload) => {
       if (err) reject(err);
       resolve(payload);
     });
