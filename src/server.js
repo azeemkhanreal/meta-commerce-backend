@@ -10,7 +10,6 @@ const orderRouter = require("./resources/order/order.route");
 const categoryRouter = require("./resources/category/category.router");
 const { register, login } = require("./util/auth");
 
-dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -34,7 +33,7 @@ app.get("/", (req, res) => {
 const start = async () => {
   await connect();
   app.listen(config.PORT, () => {
-    console.log(`server is listening on http://localhost:${PORT}`);
+    console.log(`server is listening on http://localhost:${config.PORT}`);
   });
 };
 module.exports = start;
