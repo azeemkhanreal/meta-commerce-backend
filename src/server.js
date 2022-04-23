@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 const start = async () => {
-  await connect();
+  connect();
   app.listen(config.PORT, () => {
     console.log(`server is listening on http://localhost:${config.PORT}`);
   });
